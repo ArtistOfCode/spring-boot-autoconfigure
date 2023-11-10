@@ -1,0 +1,67 @@
+# ============================================================
+# Spring Boot Autoconfigure
+spring:
+  # 禁用默认的 Spring Data Redis 实现，使用支持多数据源的自定义实现
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+
+# ============================================================
+# Spring Boot Logging
+logging.config: classpath:logback-spring.xml
+
+# ============================================================
+# Spring Jackson
+spring.jackson:
+  time-zone: GMT+8
+  date-format: yyyy-MM-dd HH:mm:ss
+
+# ============================================================
+# Spring Datasource
+spring.h2.console.enabled: false
+spring.datasource.h2.url: jdbc:h2:mem:default;MODE=MySQL;DATABASE_TO_LOWER=TRUE;INIT=RUNSCRIPT FROM 'classpath:sql/init.sql'
+
+# ============================================================
+# Spring Cloud Consul
+# 默认使用Nomad分配的IP和Port来用作于服务发现
+service.ip: ${NOMAD_IP_http:127.0.0.1}
+service.port: ${NOMAD_HOST_PORT_http:8080}
+spring.cloud.consul.discovery:
+  ipAddress: ${service.ip}
+  port: ${service.port}
+  instanceId: ${spring.application.name}-${service.ip}-${service.port}
+  preferIpAddress: true
+  queryPassing: true
+# 默认禁用动态加载配置
+spring.cloud.consul.config.watch.enabled: false
+
+# ============================================================
+# MyBatis Plus
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      id-type: AUTO
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: ${spring.root.package}.entity
+
+# ============================================================
+# Spring Boot Actuator
+spring.cloud.discovery.client.health-indicator.enabled: false
+management.endpoint.health.show-details: always
+management.endpoints.web.exposure:
+  include: beans,health,configprops,env,info,loggers,prometheus,scheduledtasks,mappings,service-registry,features,gateway
+management.metrics.tags.application: ${spring.application.name}
+management.info.git.mode: FULL
+
+# ============================================================
+# Spring Cloud Sleuth
+spring.sleuth.redis.enabled: false
+spring.sleuth.scheduled.enabled: false
+
+# ============================================================
+# Spring Cloud Zipkin
+spring.zipkin.enabled: false
