@@ -10,7 +10,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 /**
  * 事务配置
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2022/7/22
  */
 @ConditionalOnClass(PlatformTransactionManager.class)

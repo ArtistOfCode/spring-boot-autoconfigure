@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * 消息队列组件
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2021/5/8
  */
 @SpringBootConfiguration

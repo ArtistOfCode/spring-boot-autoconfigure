@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Feign监控异常处理
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2021/7/23
  */
 public class FeignRpcErrorDecoder extends ErrorDecoder.Default {
@@ -29,12 +29,12 @@ public class FeignRpcErrorDecoder extends ErrorDecoder.Default {
      */
     @Override
     public Exception decode(String methodKey, Response response) {
-        if (ApiHttpStatus.in(response.status())) {
+        if (ApiHttpStatus.isWarning(response.status())) {
             try {
                 byte[] body = StreamUtils.copyToByteArray(response.body().asInputStream());
                 ResponseError responseError = JSON.parseObject(body, ResponseError.class);
                 log.warn("{}: code:{}, message:{}", methodKey, responseError.getCode(), responseError.getMessage());
-                return new FeignException(responseError);
+                return new FeignException(methodKey, responseError);
             } catch (IOException e) {
                 log.error("Feign exception convert error.", e);
                 return super.decode(methodKey, response);

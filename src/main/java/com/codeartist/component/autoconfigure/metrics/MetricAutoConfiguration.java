@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * 指标组件
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2022/7/15
  */
 @SpringBootConfiguration

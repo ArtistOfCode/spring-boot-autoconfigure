@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 /**
  * 线程配置，如果要定义自己的线程池另外创建Bean
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2020/9/9
  */
 @EnableAsync

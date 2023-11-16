@@ -6,13 +6,13 @@ import com.codeartist.component.metric.core.PrometheusMetricsBinder;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tag;
 import io.micrometer.core.instrument.Tags;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.actuate.metrics.web.servlet.DefaultWebMvcTagsProvider;
 import org.springframework.boot.actuate.metrics.web.servlet.WebMvcTags;
 import org.springframework.boot.actuate.metrics.web.servlet.WebMvcTagsProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Micrometer监控自动注入
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2021/5/22
  */
-@Configuration
+@SpringBootConfiguration
 @ConditionalOnClass({MeterRegistry.class, MetricRegistry.class, PrometheusMetricsBinder.class})
 @AutoConfigureBefore(MetricAutoConfiguration.class)
 public class MetricsRegistryAutoConfiguration {

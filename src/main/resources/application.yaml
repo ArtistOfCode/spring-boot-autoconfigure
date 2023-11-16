@@ -1,9 +1,9 @@
 # ============================================================
 # Spring Boot Autoconfigure
-spring:
-  # 禁用默认的 Spring Data Redis 实现，使用支持多数据源的自定义实现
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+#spring:
+#  # 禁用默认的 Spring Data Redis 实现，使用支持多数据源的自定义实现
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
 
 # ============================================================
 # Spring Boot Logging

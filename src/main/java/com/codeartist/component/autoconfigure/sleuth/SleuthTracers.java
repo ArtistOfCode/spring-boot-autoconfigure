@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  * <p>
  * TODO 现在实现不够优雅，后续继续优化
  *
- * @author J.N.AI
+ * @author AiJiangnan
  * @date 2023/8/4
  */
 public class SleuthTracers implements Tracers {

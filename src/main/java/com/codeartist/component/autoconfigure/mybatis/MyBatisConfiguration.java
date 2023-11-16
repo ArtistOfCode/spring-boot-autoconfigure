@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 /**
  * MyBatis自动配置
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2022/9/2
  */
 @SpringBootConfiguration

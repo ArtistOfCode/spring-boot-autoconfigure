@@ -12,31 +12,19 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.sleuth.autoconfig.brave.SamplerProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
  * 链路追踪组件
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2021/9/7
  */
-@Configuration
+@SpringBootConfiguration
+@ConditionalOnClass()
 @ConditionalOnProperty(value = {"spring.sleuth.enabled"}, matchIfMissing = true)
 @Import(TraceAutoConfiguration.SleuthTraceAutoConfiguration.class)
 public class TraceAutoConfiguration {
-
-    /**
-     * 默认全部取样，后续优化
-     */
-    @Bean
-    public Sampler defaultTraceSampler(SamplerProperties config) {
-        // TODO 升级框架
-//        if (config.getProbability() != null) {
-//            return new ProbabilityBasedSampler(config);
-//        }
-        return Sampler.ALWAYS_SAMPLE;
-    }
 
     @Bean
     @ConditionalOnMissingBean(Tracers.class)
@@ -52,6 +40,19 @@ public class TraceAutoConfiguration {
         @ConditionalOnBean(Tracer.class)
         public SleuthTracers sleuthTracers(Tracer tracer, Tracing tracing) {
             return new SleuthTracers(tracer, tracing);
+        }
+
+
+        /**
+         * 默认全部取样，后续优化
+         */
+        @Bean
+        public Sampler defaultTraceSampler(SamplerProperties config) {
+            // TODO 升级框架
+//        if (config.getProbability() != null) {
+//            return new ProbabilityBasedSampler(config);
+//        }
+            return Sampler.ALWAYS_SAMPLE;
         }
     }
 }

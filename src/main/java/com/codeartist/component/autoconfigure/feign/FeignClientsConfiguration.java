@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * Feign全局自动配置
  *
- * @author 艾江南
+ * @author AiJiangnan
  * @date 2022/11/3
  */
 @ConditionalOnClass(Feign.class)
