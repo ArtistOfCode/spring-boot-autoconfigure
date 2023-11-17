@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Import;
  * @date 2021/9/7
  */
 @SpringBootConfiguration
-@ConditionalOnClass()
 @ConditionalOnProperty(value = {"spring.sleuth.enabled"}, matchIfMissing = true)
 @Import(TraceAutoConfiguration.SleuthTraceAutoConfiguration.class)
 public class TraceAutoConfiguration {
