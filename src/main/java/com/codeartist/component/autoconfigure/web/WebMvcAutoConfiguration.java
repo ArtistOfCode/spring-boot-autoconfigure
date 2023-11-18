@@ -1,7 +1,5 @@
 package com.codeartist.component.autoconfigure.web;
 
-import com.codeartist.component.core.support.curd.RelationService;
-import com.codeartist.component.core.support.curd.RelationServiceImpl;
 import com.codeartist.component.core.support.metric.Metrics;
 import com.codeartist.component.core.web.ClientExceptionHandler;
 import com.codeartist.component.core.web.ServerExceptionHandler;
@@ -28,11 +26,6 @@ import java.time.format.DateTimeFormatter;
 public class WebMvcAutoConfiguration {
 
     @Bean
-    public RelationService relationService() {
-        return new RelationServiceImpl();
-    }
-
-    @Bean
     public ServerExceptionHandler serverExceptionHandler(Metrics metrics) {
         return new ServerExceptionHandler(metrics);
     }
@@ -52,9 +45,11 @@ public class WebMvcAutoConfiguration {
             builder.serializerByType(Long.class, ToStringSerializer.instance);
             builder.serializerByType(Long.TYPE, ToStringSerializer.instance);
             // LocalDateTime使用DateTime格式化
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(properties.getDateFormat());
-            builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
-            builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
+            if (properties.getDateFormat() != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(properties.getDateFormat());
+                builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
+                builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
+            }
         };
     }
 }

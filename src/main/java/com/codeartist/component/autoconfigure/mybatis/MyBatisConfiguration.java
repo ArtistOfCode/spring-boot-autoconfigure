@@ -4,14 +4,19 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.codeartist.component.core.support.curd.RelationService;
+import com.codeartist.component.core.support.curd.RelationServiceImpl;
 import com.codeartist.component.core.support.serializer.JacksonSerializer;
 import com.codeartist.component.core.support.uuid.DefaultIdGenerator;
 import com.codeartist.component.core.support.uuid.IdGenerator;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.PostConstruct;
 
@@ -23,7 +28,7 @@ import javax.annotation.PostConstruct;
  */
 @SpringBootConfiguration
 @ConditionalOnClass({MybatisPlusInterceptor.class, JacksonTypeHandler.class})
-@MapperScan("${spring.root.package}.mapper")
+@Import(MyBatisConfiguration.TransactionAutoConfiguration.class)
 public class MyBatisConfiguration {
 
     @PostConstruct
@@ -51,5 +56,33 @@ public class MyBatisConfiguration {
     @ConditionalOnMissingBean
     public IdGenerator idGenerator() {
         return new DefaultIdGenerator();
+    }
+
+    @Bean
+    public RelationService relationService() {
+        return new RelationServiceImpl();
+    }
+
+
+    /**
+     * 事务配置
+     *
+     * @author AiJiangnan
+     * @date 2022/7/22
+     */
+    @SpringBootConfiguration
+    @ConditionalOnClass(PlatformTransactionManager.class)
+    @ConditionalOnBean(PlatformTransactionManager.class)
+    public static class TransactionAutoConfiguration {
+
+        /**
+         * 全局编程式事务配置
+         */
+        @Bean
+        public TransactionTemplate transactionTemplate(PlatformTransactionManager txManager) {
+            TransactionTemplate transactionTemplate = new TransactionTemplate(txManager);
+            transactionTemplate.setTimeout(30);
+            return transactionTemplate;
+        }
     }
 }

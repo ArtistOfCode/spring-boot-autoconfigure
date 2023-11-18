@@ -1,5 +1,6 @@
 package com.codeartist.component.autoconfigure.feign;
 
+import com.codeartist.component.core.entity.enums.Constants;
 import feign.Feign;
 import feign.codec.ErrorDecoder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Bean;
  * @date 2022/11/3
  */
 @ConditionalOnClass(Feign.class)
-@EnableFeignClients("${spring.root.package}.feign")
+@EnableFeignClients(Constants.ROOT_PACKAGE_KEY + ".feign")
 public class FeignClientsConfiguration {
 
     @Bean

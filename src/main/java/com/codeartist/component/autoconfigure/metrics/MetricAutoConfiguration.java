@@ -5,6 +5,7 @@ import com.codeartist.component.core.support.metric.NoopMetrics;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 /**
  * 指标组件
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Bean;
  * @date 2022/7/15
  */
 @SpringBootConfiguration
+@Import(MetricsRegistryAutoConfiguration.class)
 public class MetricAutoConfiguration {
 
     /**

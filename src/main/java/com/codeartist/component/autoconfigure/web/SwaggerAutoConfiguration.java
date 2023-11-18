@@ -1,11 +1,12 @@
-package com.codeartist.component.autoconfigure.swagger;
+package com.codeartist.component.autoconfigure.web;
 
+import com.codeartist.component.core.annotation.AppName;
 import com.codeartist.component.core.annotation.Development;
+import com.codeartist.component.core.annotation.RootPackage;
 import com.codeartist.component.core.entity.enums.Environments;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.GroupedOpenApi;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -23,14 +24,8 @@ import java.util.Collections;
 @ConditionalOnClass(OpenAPI.class)
 public class SwaggerAutoConfiguration {
 
-    @Value("${spring.application.name}")
-    private String name;
-    @Value("${spring.root.package}")
-    private String rootPackage;
-
-    // TODO
     @Bean
-    public OpenAPI openAPI() {
+    public OpenAPI openAPI(@AppName String name) {
         OpenAPI openAPI = new OpenAPI().info(new Info().title(name).version("v1"));
         if (Environments.LOCAL.not()) {
             openAPI.extensions(Collections.singletonMap("basePath", "/" + name));
@@ -39,7 +34,7 @@ public class SwaggerAutoConfiguration {
     }
 
     @Bean
-    public GroupedOpenApi groupedOpenApi() {
+    public GroupedOpenApi groupedOpenApi(@AppName String name, @RootPackage String rootPackage) {
         return GroupedOpenApi.builder()
                 .group(name)
                 .pathsToMatch("/api/**")

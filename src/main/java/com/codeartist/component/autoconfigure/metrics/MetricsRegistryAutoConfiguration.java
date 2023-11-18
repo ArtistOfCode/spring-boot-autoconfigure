@@ -10,7 +10,6 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.actuate.metrics.web.servlet.DefaultWebMvcTagsProvider;
 import org.springframework.boot.actuate.metrics.web.servlet.WebMvcTags;
 import org.springframework.boot.actuate.metrics.web.servlet.WebMvcTagsProvider;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @SpringBootConfiguration
 @ConditionalOnClass({MeterRegistry.class, MetricRegistry.class, PrometheusMetricsBinder.class})
-@AutoConfigureBefore(MetricAutoConfiguration.class)
 public class MetricsRegistryAutoConfiguration {
 
     @Bean

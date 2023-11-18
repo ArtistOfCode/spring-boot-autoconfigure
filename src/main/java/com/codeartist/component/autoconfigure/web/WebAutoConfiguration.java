@@ -1,8 +1,8 @@
 package com.codeartist.component.autoconfigure.web;
 
+import com.codeartist.component.core.SpringContext;
 import com.codeartist.component.core.support.auth.AuthContext;
 import com.codeartist.component.core.support.auth.DefaultAuthContext;
-import com.codeartist.component.core.SpringContext;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
  * @date 2022/7/15
  */
 @SpringBootConfiguration
-@Import({WebMvcAutoConfiguration.class, WebReactiveAutoConfiguration.class})
+@Import({SwaggerAutoConfiguration.class, WebMvcAutoConfiguration.class, WebReactiveAutoConfiguration.class})
 public class WebAutoConfiguration {
 
     @Bean
