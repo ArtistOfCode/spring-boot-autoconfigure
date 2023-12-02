@@ -6,6 +6,7 @@ import com.codeartist.component.core.support.auth.DefaultAuthContext;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Import;
  * @date 2022/7/15
  */
 @SpringBootConfiguration
+@EnableAspectJAutoProxy
 @Import({SwaggerAutoConfiguration.class, WebMvcAutoConfiguration.class, WebReactiveAutoConfiguration.class})
 public class WebAutoConfiguration {
 
