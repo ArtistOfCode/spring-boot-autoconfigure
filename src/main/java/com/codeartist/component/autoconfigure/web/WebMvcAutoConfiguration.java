@@ -1,6 +1,5 @@
 package com.codeartist.component.autoconfigure.web;
 
-import com.codeartist.component.core.support.metric.Metrics;
 import com.codeartist.component.core.web.ClientExceptionHandler;
 import com.codeartist.component.core.web.ServerExceptionHandler;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -26,8 +25,8 @@ import java.time.format.DateTimeFormatter;
 public class WebMvcAutoConfiguration {
 
     @Bean
-    public ServerExceptionHandler serverExceptionHandler(Metrics metrics) {
-        return new ServerExceptionHandler(metrics);
+    public ServerExceptionHandler serverExceptionHandler() {
+        return new ServerExceptionHandler();
     }
 
     @Bean

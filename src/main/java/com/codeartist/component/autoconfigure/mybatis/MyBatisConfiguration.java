@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.codeartist.component.core.support.curd.RelationService;
-import com.codeartist.component.core.support.curd.RelationServiceImpl;
 import com.codeartist.component.core.support.serializer.JacksonSerializer;
 import com.codeartist.component.core.support.uuid.DefaultIdGenerator;
 import com.codeartist.component.core.support.uuid.IdGenerator;
@@ -57,12 +55,6 @@ public class MyBatisConfiguration {
     public IdGenerator idGenerator() {
         return new DefaultIdGenerator();
     }
-
-    @Bean
-    public RelationService relationService() {
-        return new RelationServiceImpl();
-    }
-
 
     /**
      * 事务配置

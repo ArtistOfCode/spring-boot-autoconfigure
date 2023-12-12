@@ -1,7 +1,7 @@
 package com.codeartist.component.autoconfigure.metrics;
 
 import com.codeartist.component.core.support.metric.Metrics;
-import com.codeartist.component.core.support.metric.NoopMetrics;
+import com.codeartist.component.core.support.metric.NoOpMetrics;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +23,6 @@ public class MetricAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(Metrics.class)
     public Metrics defaultMetrics() {
-        return new NoopMetrics();
+        return new NoOpMetrics();
     }
 }

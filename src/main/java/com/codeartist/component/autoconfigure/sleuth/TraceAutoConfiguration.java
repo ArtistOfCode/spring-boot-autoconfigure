@@ -3,7 +3,7 @@ package com.codeartist.component.autoconfigure.sleuth;
 import brave.Tracer;
 import brave.Tracing;
 import brave.sampler.Sampler;
-import com.codeartist.component.core.support.trace.NoopTracers;
+import com.codeartist.component.core.support.trace.NoOpTracers;
 import com.codeartist.component.core.support.trace.Tracers;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -28,7 +28,7 @@ public class TraceAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(Tracers.class)
     public Tracers defaultTracers() {
-        return new NoopTracers();
+        return new NoOpTracers();
     }
 
     @SpringBootConfiguration

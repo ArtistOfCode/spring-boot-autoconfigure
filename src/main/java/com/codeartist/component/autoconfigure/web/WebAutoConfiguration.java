@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Import;
  */
 @SpringBootConfiguration
 @EnableAspectJAutoProxy
-@Import({SwaggerAutoConfiguration.class, WebMvcAutoConfiguration.class, WebReactiveAutoConfiguration.class})
+@Import({WebMvcAutoConfiguration.class, WebReactiveAutoConfiguration.class})
 public class WebAutoConfiguration {
 
     @Bean

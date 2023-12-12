@@ -8,6 +8,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 
@@ -22,6 +23,7 @@ import java.util.Collections;
 @Development
 @SpringBootConfiguration
 @ConditionalOnClass(OpenAPI.class)
+@AutoConfigureAfter(WebAutoConfiguration.class)
 public class SwaggerAutoConfiguration {
 
     @Bean

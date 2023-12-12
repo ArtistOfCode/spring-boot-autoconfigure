@@ -1,7 +1,8 @@
 # Auto Configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.codeartist.component.autoconfigure.metrics.MetricAutoConfiguration,\
 com.codeartist.component.autoconfigure.web.WebAutoConfiguration,\
+com.codeartist.component.autoconfigure.web.SwaggerAutoConfiguration,\
+com.codeartist.component.autoconfigure.metrics.MetricAutoConfiguration,\
 com.codeartist.component.autoconfigure.mybatis.MyBatisConfiguration,\
 com.codeartist.component.autoconfigure.cache.CacheAutoConfiguration,\
 com.codeartist.component.autoconfigure.mq.MqAutoConfiguration,\

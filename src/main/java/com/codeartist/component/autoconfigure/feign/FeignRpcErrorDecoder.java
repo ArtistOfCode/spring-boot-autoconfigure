@@ -29,11 +29,10 @@ public class FeignRpcErrorDecoder extends ErrorDecoder.Default {
      */
     @Override
     public Exception decode(String methodKey, Response response) {
-        if (ApiHttpStatus.isWarning(response.status())) {
+        if (ApiHttpStatus.isWarning(response.status()) || ApiHttpStatus.isError(response.status())) {
             try {
                 byte[] body = StreamUtils.copyToByteArray(response.body().asInputStream());
                 ResponseError responseError = JSON.parseObject(body, ResponseError.class);
-                log.warn("{}: code:{}, message:{}", methodKey, responseError.getCode(), responseError.getMessage());
                 return new FeignException(methodKey, responseError);
             } catch (IOException e) {
                 log.error("Feign exception convert error.", e);
