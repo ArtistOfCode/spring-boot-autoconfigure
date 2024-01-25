@@ -42,7 +42,6 @@ public class SwaggerAutoConfiguration {
     public GroupedOpenApi groupedOpenApi() {
         return GroupedOpenApi.builder()
                 .group(globalProperties.getAppName())
-                .pathsToMatch("/api/**")
                 .packagesToScan(globalProperties.getRootPackage() + ".controller")
                 .build();
     }

@@ -2,7 +2,6 @@ package com.codeartist.component.autoconfigure.sleuth;
 
 import brave.Tracer;
 import brave.Tracing;
-import brave.sampler.Sampler;
 import com.codeartist.component.core.support.trace.NoOpTracers;
 import com.codeartist.component.core.support.trace.Tracers;
 import org.springframework.boot.SpringBootConfiguration;
@@ -10,7 +9,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.cloud.sleuth.autoconfig.brave.SamplerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
@@ -39,19 +37,6 @@ public class TraceAutoConfiguration {
         @ConditionalOnBean(Tracer.class)
         public SleuthTracers sleuthTracers(Tracer tracer, Tracing tracing) {
             return new SleuthTracers(tracer, tracing);
-        }
-
-
-        /**
-         * 默认全部取样，后续优化
-         */
-        @Bean
-        public Sampler defaultTraceSampler(SamplerProperties config) {
-            // TODO 升级框架
-//        if (config.getProbability() != null) {
-//            return new ProbabilityBasedSampler(config);
-//        }
-            return Sampler.ALWAYS_SAMPLE;
         }
     }
 }
