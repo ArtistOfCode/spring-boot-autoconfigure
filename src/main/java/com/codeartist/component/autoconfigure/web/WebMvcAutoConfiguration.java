@@ -1,5 +1,6 @@
 package com.codeartist.component.autoconfigure.web;
 
+import com.codeartist.component.autoconfigure.swagger.SwaggerAutoConfiguration;
 import com.codeartist.component.core.web.ClientExceptionHandler;
 import com.codeartist.component.core.web.ServerExceptionHandler;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +23,7 @@ import java.time.format.DateTimeFormatter;
  * @date 2023-11-12
  */
 @SpringBootConfiguration
+@Import(SwaggerAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class WebMvcAutoConfiguration {
 

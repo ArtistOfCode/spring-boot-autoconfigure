@@ -1,7 +1,9 @@
 package com.codeartist.component.autoconfigure.web;
 
+import com.codeartist.component.autoconfigure.swagger.SwaggerFluxAutoConfiguration;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.context.annotation.Import;
 
 /**
  * Web Reactive 配置
@@ -10,6 +12,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
  * @date 2023-11-12
  */
 @SpringBootConfiguration
+@Import(SwaggerFluxAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
 public class WebReactiveAutoConfiguration {
 
