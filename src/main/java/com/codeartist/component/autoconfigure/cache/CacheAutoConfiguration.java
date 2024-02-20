@@ -9,6 +9,7 @@ import com.codeartist.component.cache.bean.CacheProperties;
 import com.codeartist.component.cache.core.Cache;
 import com.codeartist.component.cache.core.LocalCache;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +27,7 @@ import java.util.Map;
 @ConditionalOnClass(CacheProperties.class)
 @EnableConfigurationProperties(CacheProperties.class)
 @Import({CaffeineAutoConfiguration.class, RedisAutoConfiguration.class})
+@AutoConfigureAfter(org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration.class)
 public class CacheAutoConfiguration {
 
     @Bean
