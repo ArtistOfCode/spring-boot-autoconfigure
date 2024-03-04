@@ -30,7 +30,7 @@ mybatis-plus:
       logic-not-delete-value: 0
   configuration:
     map-underscore-to-camel-case: true
-  type-aliases-package: ${spring.root.package}.entity
+  type-aliases-package: ${spring.application.root-package}.entity
 
 # ============================================================
 # Spring Data H2
@@ -59,10 +59,10 @@ spring.sleuth.scheduled.enabled: false
 service.ip: ${NOMAD_IP_http:127.0.0.1}
 service.port: ${NOMAD_HOST_PORT_http:8080}
 spring.cloud.consul.discovery:
-  ipAddress: ${service.ip}
+  ip-address: ${service.ip}
   port: ${service.port}
-  instanceId: ${spring.application.name}-${service.ip}-${service.port}
-  preferIpAddress: true
-  queryPassing: true
+  instance-id: ${spring.application.name}-${service.ip}-${service.port}
+  prefer-ip-address: true
+  query-passing: true
 # 默认禁用动态加载配置
 spring.cloud.consul.config.watch.enabled: false

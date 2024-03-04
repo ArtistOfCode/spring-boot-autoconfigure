@@ -3,9 +3,10 @@ package com.codeartist.component.autoconfigure.web;
 import com.codeartist.component.core.SpringContext;
 import com.codeartist.component.core.support.auth.AuthContext;
 import com.codeartist.component.core.support.auth.DefaultAuthContext;
-import com.codeartist.component.core.support.props.GlobalProperties;
+import com.codeartist.component.core.support.props.AppProperties;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
@@ -18,13 +19,9 @@ import org.springframework.context.annotation.Import;
  */
 @SpringBootConfiguration
 @EnableAspectJAutoProxy
+@EnableConfigurationProperties(AppProperties.class)
 @Import({WebMvcAutoConfiguration.class, WebReactiveAutoConfiguration.class})
 public class WebAutoConfiguration {
-
-    @Bean
-    public GlobalProperties globalProperties() {
-        return new GlobalProperties();
-    }
 
     @Bean
     public SpringContext springContext() {
